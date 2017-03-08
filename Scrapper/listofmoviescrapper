@@ -1,0 +1,35 @@
+var maintable=$(".wikitable");
+var titleurls;
+var titlename;
+var generetype;
+for(var i=0;i<maintable.length;i++)
+{
+	var tempobj=maintable[i];
+	$(tempobj).find("thead tr th:nth-child(1)").remove();
+	var trtempobj=$(tempobj).find("tbody tr");
+	for(var j=0;j<trtempobj.length;j++)
+	{
+		if($(trtempobj[j]).find("td").length==8)
+		{
+			$(trtempobj[j]).find("td:nth-child(1),td:nth-child(2)").remove();
+		}
+		else if($(trtempobj[j]).find("td").length==7)
+		{
+			$(trtempobj[j]).find("td:nth-child(1)").remove();
+		}
+		titleurls=$(trtempobj[j]).find("td:nth-child(1) a").attr("href");
+		titlename=$(trtempobj[j]).find("td:nth-child(1) a").text();
+		generetype=$(trtempobj[j]).find("td:nth-child(4)").text();
+
+		$.post("http://localhost:1234/FilmBoard/Action_Page.php?Action=MoviesDB",
+		{
+			titleval:titlename,
+			titleurl:titleurls,
+			genere:generetype
+		},
+		function(data,status){
+
+		});
+
+	}
+}

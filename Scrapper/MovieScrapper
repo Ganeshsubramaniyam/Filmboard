@@ -1,0 +1,98 @@
+var Moviename,Moviebanner, Moviedesc, Starring, Director, Producer, Writter, Story, Screenplay, MusicDirector, Cinematographer, Editor, ProductionCompany, DistributionCompany, MovieDuration, ReleaseDate, Language, Budget, BoxOfficeCollection;
+Moviename=$("#firstHeading").text().replace("(film)","").trim();
+Moviedesc=$($("#mw-content-text p")[0]).text();
+var infotable=$(".infobox")[0];
+var trinfotable=$(infotable).find("tr");
+var tracklisttable=$(".tracklist").find("tbody tr");
+for(var i=0;i<trinfotable.length;i++)
+{
+	var thinfotable=$(trinfotable[i]).find("th");
+	var tdinfotable=$(trinfotable[i]).find("td");
+	if(tdinfotable.length == 1 && (i == 0 || i == 1))
+	{
+		Moviebanner="https:"+$(tdinfotable).find("a img").attr("src");
+	}
+	else
+	{
+		var headertilte=$(thinfotable[0]).text();
+		if(headertilte == "Directed by")
+		{
+			Director=$(tdinfotable[0]).text().trim();
+		}
+		else if(headertilte == "Produced by")
+		{
+			Producer=$(tdinfotable[0]).text().trim();
+		}
+		else if(headertilte == "Written by")
+		{
+			Writter=$(tdinfotable[0]).text().trim();
+		}
+		else if(headertilte == "Screenplay by")
+		{
+			Screenplay=$(tdinfotable[0]).text().trim();
+		}
+		else if(headertilte == "Story by")
+		{
+			Story=$(tdinfotable[0]).text().trim();
+		}
+		else if(headertilte == "Starring")
+		{
+			Starring=$(tdinfotable[0]).text().trim();
+		}
+		else if(headertilte == "Music by")
+		{
+			MusicDirector=$(tdinfotable[0]).text().trim();
+		}
+		else if(headertilte == "Cinematography")
+		{
+			Cinematographer=$(tdinfotable[0]).text().trim();
+		}
+		else if(headertilte == "Edited by")
+		{
+			Editor=$(tdinfotable[0]).text().trim();
+		}
+		else if(headertilte.search("company") >=0)
+		{
+			ProductionCompany=$(tdinfotable[0]).text().trim();
+		}
+		else if(headertilte == "Distributed by")
+		{
+			DistributionCompany=$(tdinfotable[0]).text().trim();
+		}
+		else if(headertilte == "Release Dates")
+		{
+			ReleaseDate=$(tdinfotable[0]).text().trim();
+		}
+		else if(headertilte == "Running time")
+		{
+			MovieDuration=$(tdinfotable[0]).text().trim();
+		}
+		else if(headertilte == "Language")
+		{
+			Language=$(tdinfotable[0]).text().trim();
+		}
+		else if(headertilte == "Budget")
+		{
+			Budget=$(tdinfotable[0]).text().trim();
+		}
+		else if(headertilte == "Box office")
+		{
+			BoxOfficeCollection=$(tdinfotable[0]).text().trim();
+		}
+	}
+}
+var tracktable="<table class='tracklisttable'>";
+for(var j=0;j<tracklisttable.length;j++)
+{
+	var tdtracklisttable=$(tracklisttable[j]).find("td");
+	if(tdtracklisttable.length > 2)
+	{
+		tracktable=tracktable+"<tr>";
+		for(var k=0;k<tdtracklisttable.length;k++)
+		{
+			tracktable=tracktable+"<td>"+ $(tdtracklisttable[k]).text().trim()+"</td>";
+		}
+		tracktable=tracktable+"</tr>"
+	}
+}
+tracktable=tracktable+"</table>";

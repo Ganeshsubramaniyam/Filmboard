@@ -1,0 +1,41 @@
+/*****************/
+social activity
+/****************/
+itemid - postid,movieid
+categorytype - 0, 1
+socialtype - (like,unlike,report)
+                0,1,2
+userid - userid
+
+
+/*********************/
+social like
+/*********************/
+itemid - postid,movieid
+categorytype - 0, 1
+likecount - integer
+
+/*********************/
+social unlike
+/*********************/
+itemid - postid,movieid
+categorytype - 0, 1
+unlikecount - integer
+
+
+/*********************/
+social report
+/*********************/
+itemid - postid,movieid
+categorytype - 0, 1
+reportcount - integer
+
+
+
+like
+unlike
+like -rev
+unlike -rev
+
+report
+unlike -report
